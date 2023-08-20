@@ -5,7 +5,6 @@ from datetime import date
 
 # Create your models here.
 
-# Not yet migrated
 class Plant(models.Model):
     name = models.CharField(max_length=20)
     date = models.DateField('Date Planted')
