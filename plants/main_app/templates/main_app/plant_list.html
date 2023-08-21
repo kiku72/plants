@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>plants go here</h1>
+<main class="dashboard">
+    <section class="info-column">
+        <div class="info-box">
+            <h1> welcome! </h1>
+            <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui maxime eaque inventore voluptate dolore? Praesentium asperiores laborum </p>
+        </div>
+        <div class="functions-box">
+            <a href="{% url 'plants_create' %}" class="dash-links"> add a new plant </a>
+            <a href="#" class="dash-links">create a new collection</a>
+            <a href="#" class="dash-links">view collections</a>
+            <a href="/" class="dash-links"><span id="sign-out">sign out</span></a>
+        </div>
+    </section>
+    
+    <section class="garden">
+        <div>
+            <!-- to be filled -->
+        </div>
+    </section>
 
+</main>
 {% endblock %}

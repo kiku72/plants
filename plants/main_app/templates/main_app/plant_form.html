@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="form">
+    <h1 class="header"> Let's add your new plant!</h1>
+    <form action="" method="POST" id="create-form">
+        {% csrf_token %}
+        <div id="form-content">
+            {{ form.as_p }}
+        </div>
+        <div class="form-buttons">
+            <input type="submit" value="Add Plant" class="btn">
+            <a href="{% url 'plants_list' %}" class="btn">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
