@@ -15,9 +15,17 @@
     </section>
     
     <section class="garden">
-        <div>
-            <!-- to be filled -->
-        </div>
+        <div class="plant-boxes">
+            {% for plant in plant_list %}
+                <a href="{% url 'detail' plant.id %}">
+                    <div class="plant-box" id="plant-{{plant.id}}">
+                        <h3>{{ plant.name }} </h3>
+                        <p>(Planted on {{ plant.date }})</p>
+                        <p>{{ plant.description }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
     </section>
 
 </main>

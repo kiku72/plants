@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Plant
 
 # Create your views here.
@@ -38,3 +38,16 @@ def signup (request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request,'registration/signup.html', context)
+    # age is not included because it can be calculated with date-planted instead
+    fields = ['name', 'date', 'description']
+
+class PlantDetailView (DetailView):
+    model = Plant
+
+class PlantUpdate (UpdateView):
+    model = Plant
+    fields = ['name', 'date', 'description']
+
+class PlantDelete (DeleteView):
+    model = Plant
+    success_url = '/plants'

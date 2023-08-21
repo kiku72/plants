@@ -15,5 +15,8 @@ class Plant(models.Model):
     def __str__(self):
         return self.name
 
+    # New and updated plants redirect back to dashboard
+    def get_absolute_url(self):
+        return reverse('plants_list')
 
 # class Collection(models.Model):

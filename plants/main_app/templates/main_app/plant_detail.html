@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="form">
+    <h1 class="header"> my {{ plant.name }}</h1>
+    <div class="form-content">
+        <p class="plant-date"> Created on {{plant.date}} </p>
+        <p>{{ plant.description }}</p>
+    </div>
+    <div class="form-buttons">
+        <a href="{% url 'plants_list' %}" class="btn">Back</a>
+        <a href="{% url 'plants_update' plant.id %}" class="btn">Edit</a>
+        <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
+    </div>
+</section>
+{% endblock %}
