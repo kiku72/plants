@@ -1,10 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="form">
+    {% if object %}
+    <section class="form">
+        <h1 class="header"> update {{plant.name}}</h1>
+        <form action="" method="POST" id="update-form">
+            {% csrf_token %}
+            <div class="form-content">
+                <p class="plant-date">Created on {{plant.date}} </p>
+                <textarea>{{ plant.description }}</textarea>
+            </div>
+            <div class="form-buttons">
+                <input type="submit" value="Update" class="btn">
+                <a href="{% url 'detail' plant.id %}" class="btn">Back</a>
+            </div>
+        </form>
+    </section>
+    {% else %}
     <h1 class="header"> Let's add your new plant!</h1>
     <form action="" method="POST" id="create-form">
         {% csrf_token %}
-        <div id="form-content">
+        <div class="form-content">
             {{ form.as_p }}
         </div>
         <div class="form-buttons">
@@ -12,5 +28,6 @@
             <a href="{% url 'plants_list' %}" class="btn">Cancel</a>
         </div>
     </form>
+    {% endif %}
 </section>
 {% endblock %}

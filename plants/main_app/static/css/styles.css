@@ -13,12 +13,16 @@
     scroll-behavior: smooth;
 }
 /* -------------------------- DASHBOARD -------------------------- */
+
+
 .dashboard {
     display: grid;
     grid-template-columns: repeat(4, 25vw);
     grid-template-rows: 1fr 1fr;
     height: 100vh;
 }
+
+/* __________________________ info-board __________________________ */
 .dashboard h1 {
     margin-top: 0;
     padding-top: 1.5em;
@@ -62,9 +66,12 @@
     color: var(--background);
 }
 
+
+/* ________________________ garden-content ________________________ */
+
 .garden {
     grid-area: 1/2/3/5;
-    --s: 10rem; /* controls box sizing */
+    --s: 10rem; 
     --_g: var(--background) 90deg, white 0;
     background: 
       conic-gradient(from 90deg at 2px 2px,var(--_g)),
@@ -72,6 +79,29 @@
     background-size: var(--s) var(--s), calc(var(--s)/5) calc(var(--s)/5);
 }
 
+
+.item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.item-content p {
+    width: 50rem;
+    height: 30rem;
+    margin: 3rem;
+    background-color: var(--primary);
+    opacity: .5;
+    border-radius: 3px;
+    padding: 3px
+}
+.item-content textarea {
+    width: 50rem;
+    height: 30rem;
+    margin: 3rem;
+}
+.plant-date {
+    text-align: center;
+}
 
 
 /* -------------------------- LANDING -------------------------- */
@@ -141,7 +171,7 @@
     justify-self: flex-end;
 }
 
-.page-footer { 
+footer { 
     position: fixed;
     padding-left: 1em;
     bottom: 1px;
@@ -164,9 +194,10 @@ html {
 .form {
     background-image: linear-gradient(180deg, #E2E4D4 42%, rgba(226, 228, 212, 0.8) 91%);    
     padding-bottom: 5em;
+
 }
 
-#form-content {
+.form-content {
     color: var(--secondary);
     font-size: 1.25rem;
     margin: 0 auto;
@@ -175,6 +206,12 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50rem;
+    height: 30rem;
+    background-color: #b2b49ebe;
+    opacity: .5;
+    border-radius: 3px;
+    padding: 3px
 }
 
 .header{
@@ -202,3 +239,6 @@ html {
 .form-buttons .btn {
     color: var(--secondary);
 }
+
+
+
