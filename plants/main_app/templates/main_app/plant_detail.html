@@ -2,9 +2,9 @@
 {% block content %}
 <section class="form">
     <h1 class="header"> my {{ plant.name }}</h1>
+    <p class="plant-date"> Planted on {{plant.date}} </p>
     <div class="form-content">
-        <p class="plant-date"> Created on {{plant.date}} </p>
-        <p>{{ plant.description }}</p>
+        <p id="plant-desc">{{ plant.description }}</p>
     </div>
     <div class="form-buttons">
         <a href="{% url 'plants_list' %}" class="btn">Back</a>
