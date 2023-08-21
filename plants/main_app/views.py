@@ -25,6 +25,17 @@ class PlantCreate (CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+class PlantDetailView (DetailView):
+    model = Plant
+
+class PlantUpdate (UpdateView):
+    model = Plant
+    fields = ['name', 'date', 'description']
+
+class PlantDelete (DeleteView):
+    model = Plant
+    success_url = '/plants'
+
 def signup (request):
     error_message = ''
     if request.method == 'POST':
@@ -38,16 +49,3 @@ def signup (request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request,'registration/signup.html', context)
-    # age is not included because it can be calculated with date-planted instead
-    fields = ['name', 'date', 'description']
-
-class PlantDetailView (DetailView):
-    model = Plant
-
-class PlantUpdate (UpdateView):
-    model = Plant
-    fields = ['name', 'date', 'description']
-
-class PlantDelete (DeleteView):
-    model = Plant
-    success_url = '/plants'
