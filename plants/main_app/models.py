@@ -15,9 +15,8 @@ class Plant(models.Model):
     def __str__(self):
         return self.name
 
-    # New and updated plants redirect back to dashboard
     def get_absolute_url(self):
-        return reverse('plants_list')
+        return reverse('detail', kwargs={'plant_id': self.id})
 
     @property
     def Get_age(self):
@@ -39,3 +38,10 @@ class Plant(models.Model):
     #     super(Person, self).save(*args, **kwargs)
 
 # class Collection(models.Model):
+
+class Photo(models.Model): 
+    url = models.CharField(max_length=200)
+    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for plant_id: {self.plant_id} @{self.url}"
