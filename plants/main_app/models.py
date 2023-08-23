@@ -45,3 +45,13 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for plant_id: {self.plant_id} @{self.url}"
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    plant = models.ForeignKey(Plant, related_name="comments", on_delete=models.CASCADE)
+    comment_text = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.plant.name}"
