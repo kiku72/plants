@@ -17,14 +17,17 @@
 <section class="comments-section">
     <h2>Comments</h2>
 
+    <a href="#">Add A Comment</a>
+    <br>
     {% if not plant.comments.all %}
-        No Comments Yet - <a href="#">Add A Comment</a>
+        No Comments Yet
     {% else %}
         {% for comment in plant.comments.all %}
             {{ comment.comment_text }} - 
             <strong>
                 {{ comment.user.username }} @ {{ comment.date }}
             </strong>
+            <br>
         {% endfor %}
     {% endif %}
 </section>
