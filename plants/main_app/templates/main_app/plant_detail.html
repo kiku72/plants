@@ -13,4 +13,20 @@
         <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
     </div>
 </section>
+<hr>
+<section class="comments-section">
+    <h2>Comments</h2>
+
+    {% if not plant.comments.all %}
+        No Comments Yet - <a href="#">Add A Comment</a>
+    {% else %}
+        {% for comment in plant.comments.all %}
+            {{ comment.comment_text }} - 
+            <strong>
+                {{ comment.user.username }} @ {{ comment.date }}
+            </strong>
+        {% endfor %}
+    {% endif %}
+</section>
+<br>
 {% endblock %}

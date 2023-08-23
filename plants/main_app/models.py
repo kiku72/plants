@@ -39,3 +39,12 @@ class Plant(models.Model):
     #     super(Person, self).save(*args, **kwargs)
 
 # class Collection(models.Model):
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    plant = models.ForeignKey(Plant, related_name="comments", on_delete=models.CASCADE)
+    comment_text = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on {self.plant.name}"
