@@ -26,11 +26,16 @@
         <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
     </div>
 </section>
-<hr>
-<section class="comments-section">
+<section class="comments-section form">
     <h2>Comments</h2>
 
-    <a href="#">Add A Comment</a>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit" class="btn">Add Comment</button>
+    </form>
     <br>
     {% if not plant.comments.all %}
         No Comments Yet

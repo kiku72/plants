@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Plant, Photo
+from .models import Plant, Photo, Comment
+from .forms import CommentForm
 
 # Create your views here.
 
@@ -33,9 +34,28 @@ class PlantCreate (LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-    
+
+class CommentCreate (LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ['comment_text']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+# def add_comment(request, plant_id):
+#     form = CommentForm(request.POST)
+#     print(plant_id)
+#     if form.is_valid():
+#         comment = form.save(commit=False)
+#         # comment.user = request.user
+#         comment.plant_id = plant_id
+#         comment.save()
+#     return redirect('detail', plant_id=plant_id)
+
 class PlantDetailView (LoginRequiredMixin, DetailView):
     model = Plant
+    comment_form = CommentForm()
 
 class PlantUpdate (LoginRequiredMixin, UpdateView):
     model = Plant
@@ -74,4 +94,4 @@ def add_photo (request, plant_id):
         except Exception as e:
             print('An error occurred uploading file to S3')
             print(e)
-    return redirect('detail', pk=plant_id)
+    return redirect('detail', plant_id=plant_id)
