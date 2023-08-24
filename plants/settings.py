@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 import environ
+import os
 
 environ.Env()
 environ.Env().read_env()
@@ -30,7 +31,7 @@ SECRET_KEY = 'django-insecure-bj-13+jz2$%a#@1#tl!phkssdo-v54zfrdxr39#=j@#6#xit67
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,11 +83,15 @@ WSGI_APPLICATION = 'plants.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'plants',
-        'HOST': 'localhost',
+        'NAME': '<DATABASE>',
+        'USER': '<USER>',
+        'PASSWORD': '<PASSWORD>',
+        'HOST': '<HOST>',
+        'PORT': '5432',
     }
 }
 
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -131,3 +136,6 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_heroku 
+django_heroku.settings(locals())
