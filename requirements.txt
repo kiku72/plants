@@ -9,9 +9,7 @@ django-heroku==0.3.1
 django-widget-tweaks==1.4.12
 gunicorn==21.2.0
 jmespath==1.0.1
-libxml2-python==2.11.4
 packaging==23.1
-prelude==5.2.0
 psycopg2==2.9.7
 psycopg2-binary==2.9.7
 python-dateutil==2.8.2
