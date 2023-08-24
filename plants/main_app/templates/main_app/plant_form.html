@@ -3,34 +3,33 @@
 
 <!-- forms for creating/updating plant instances -->
 <section class="form">
-    {% if object %}
-        <h1 class="header"> update {{plant.name}}</h1>
-    {% else %}
-        <h1 class="header"> Let's add your new plant!</h1>
-    {% endif %}
-    <form action="" method="POST">
-        {% csrf_token %}
+    <div class="form-bg">
+        {% if object %}
+            <h1 class="header"> update {{plant.name}}</h1>
+        {% else %}
+            <h1 class="header"> Let's add your new plant!</h1>
+        {% endif %}
         <div class="form-content">
-            {{ form.as_p }}
+            <form action="" method="POST">
+            {% csrf_token %}
+                {{ form.as_p }}
+                <div class="form-buttons">
+                    {% if object %}
+                        <a href="{% url 'detail' plant.id %}" class="btn">Back</a>
+                        <input type="submit" value="Update" class="btn">
+                    {% else %}
+                        <a href="{% url 'plants_list' %}" class="btn">Cancel</a>
+                        <input type="submit" value="Add Plant" class="btn">
+                    {% endif %}
+                </div>
+            </form>
         </div>
-        <div class="form-buttons">
-            {% if object %}
-                <input type="submit" value="Update" class="btn">
-                <a href="{% url 'detail' plant.id %}" class="btn">Back</a>
-            {% else %}
-                <input type="submit" value="Add Plant" class="btn">
-                <a href="{% url 'plants_list' %}" class="btn">Cancel</a>
-            {% endif %}
-        </div>
-    </form>
-    <!-- needs work... -->
-    {% if object == None %}
-    <form action="{% url 'add_photo' plant.id %}" enctype="multipart/form-data" method="POST" class="">
-        {% csrf_token %}
-        <input type="file" name="photo-file">
-        <button type="submit" class="btn">Upload Photo</button>
-    </form>
-    {% endif %}
+        <form action="{% url 'add_photo' plant.id %}" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input type="file" name="photo-file">
+            <button type="submit" class="btn">Upload Photo</button>
+        </form>
+    </div>
 </section>
 
 {% endblock %}

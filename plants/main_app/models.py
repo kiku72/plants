@@ -16,7 +16,7 @@ class Plant(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'plant_id': self.id})
+        return reverse('detail', kwargs={'pk': self.id})
 
     @property
     def Get_age(self):
@@ -37,7 +37,6 @@ class Plant(models.Model):
     #     self.age = self.get_age
     #     super(Person, self).save(*args, **kwargs)
 
-# class Collection(models.Model):
 
 class Photo(models.Model): 
     url = models.CharField(max_length=200)

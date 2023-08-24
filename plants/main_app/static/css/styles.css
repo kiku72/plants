@@ -19,7 +19,7 @@
     grid-template-columns: repeat(4, 25vw);
     grid-template-rows: repeat(auto-fill, minmax(50vh, auto));
     overflow-x: hidden;
-
+    /* Grid background */
     --s: 10rem; 
     --_g: var(--background) 90deg, white 0;
     background: 
@@ -250,73 +250,116 @@ footer {
     font-size: 17.8px;
 }
 
-/* -------------------------- FORMS -------------------------- */
-
-/* grid template */
-html {
-    /* --s: 10rem; 
-    --_g: var(--background) 90deg, white 0;
-    background: 
-      conic-gradient(from 90deg at 2px 2px,var(--_g)),
-      conic-gradient(from 90deg at 1px 1px,var(--_g));
-    background-size: var(--s) var(--s), calc(var(--s)/5) calc(var(--s)/5); */
-}
+/* ------------------------ DETAILS ------------------------ */
 
 .form {
-    background-image: linear-gradient(180deg, #E2E4D4 42%, rgba(226, 228, 212, 0.8) 91%);    
-    padding-bottom: 5em;
-
+    background-color: var(--background);
+    min-height: 100vh;
 }
 
-.plant-date {
+.form-bg {
+    display: flex;
+    flex-direction: column;    
     text-align: center;
-    font-size: 1.25rem;
+    align-items: center;
+    justify-content: start;
+    margin: 0 auto;
+    max-width: 50em;
     color: var(--secondary);
+}
+
+.header{
+    margin-top: 1em;
+    font-size: 4rem;
+}
+.plant-date {
+    font-size: 1.25rem;
     margin-bottom: 1vh;
 }
 
 .form-content {
-    color: var(--secondary);
+    margin: 2em 0;
     font-size: 1.25rem;
-    margin: 0 auto;
-    text-align: center; 
     width: 50rem;
-    height: 30rem;
-    background-color: #b2b49ebe;
-    opacity: .5;
+    min-height: 5rem;
+    background-color: #b2b49e34;
     border-radius: 10px;
 }
 .form-content #plant-desc {
-    color: black;
+    color: rgb(92, 92, 92);
     text-align: left;
-}
-.form-content p {
-    text-align: center;
-    color: red;
+    padding-left: 1rem;
 }
 
-.header{
-    margin-top: 0;
-    padding: 1em 0 .5em 0;
-    font-size: 4rem;
+.comments-section {
+    margin-bottom: 10%;
+}
+.comments-section a {
+    text-decoration: none;
+    color: grey;
+}
+
+.details-buttons {
+    position: absolute;
+    width: 50em;
+}
+.details-buttons-bottom {
+    position: relative;
+    width: 50em;
+    bottom: 30px;
+}
+.details-buttons a,
+.details-buttons-bottom a {
+    position: absolute;
+    font-size: 2rem;
     color: var(--secondary);
-    text-align: center;
+    top: 10px;
+    text-decoration: none;
+    opacity: .6;
+}
+#back-btn {
+    left: 0;
+}
+#edit-btn {
+    right: 0;
+}
+#delete-btn {
+    position: relative;
+    opacity: 1;
+    font-weight: .9;
 }
 
-.btn{
-    font-size: 1em;
+/* ------------------------- FORMS ------------------------- */
+.form-content label {
+    max-width: none;
+}
+.form-content #id_name, 
+.form-content #id_date {
+    text-align: center;
+}
+.form-buttons .btn {
+    font-size: 1.5em;
     background-color: var(--background-inputs);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 11px;
+    padding: 1rem 3rem;
     border-radius: var(--border-radius);
     text-decoration: none;
+    margin: 1em 10px;
+}
+.form-content {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
 }
 
-.form-buttons {
-    text-align: center;
-    margin-top: 3em;
+/* -------------------- LOGIN/SIGNUP --------------------- */
+.account-form{
+    margin-top: 20%;
 }
-.form-buttons .btn {
-    color: var(--secondary);
+.account-form input {
+    display: block;
+}
+.account-form input,
+.account-form label {
+    margin: 0 auto;
 }

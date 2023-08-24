@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+<section class="form-bg">
 
-<h1>Sign Up</h1>
-
-<p class="redtext">{{ error_message }}</p>
-
-<form method="POST" action="{% url 'signup' %}">
+    
+<form method="POST" action="{% url 'signup' %}" class="account-form">
+    <h1>Sign Up</h1>
+    
+    <p class="redtext">{{ error_message }}</p>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn">Sign Up</button>
 </form>
+</section>
 
 {% endblock %}
