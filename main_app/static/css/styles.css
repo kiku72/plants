@@ -15,6 +15,7 @@
 /* -------------------------- DASHBOARD -------------------------- */
 
 .dashboard {
+    min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(4, 25vw);
     grid-template-rows: repeat(auto-fill, minmax(50vh, auto));
@@ -52,6 +53,7 @@
 .garden img {
     height: 50vh;
     width: 25vw;
+    object-fit: cover;
     opacity: 0.7;
     padding: 20px;
     border-radius: 10%;
@@ -127,7 +129,7 @@
 
 .info-box {
     grid-area: 1/1/2/2;
-    height: 50.5vh;
+    height: 50vh;
     background-color: var(--primary);
     pointer-events: none;
 }
@@ -136,10 +138,27 @@
     color: white;
 }
 
+.info-images {
+    opacity: 0.3;
+    top: 10px;
+    visibility: hidden;
+}
+
+.info-images img {
+    position: absolute;
+    height: 35vh;
+    top: 4vh;
+    left: 4vw;
+}
+
+.info-welcome {
+    visibility: visible;
+}
+
 .functions-box {
     grid-area: 2/1/3/2;
     background-color: var(--primary);
-    height: 49.5vh;
+    height: 50vh;
     border-top: solid .5px grey;
     padding-top: 3em;
 }
@@ -150,9 +169,9 @@
     flex-direction: column;
     text-decoration: none;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
-    margin-top: 1em;
+    margin-top: 25px;
     transition: opacity .4s ease;
 }
 
@@ -162,17 +181,10 @@
 
 .dashboard-links:hover > .dash-link:hover {
     opacity: 1;
-    /* transform: scale(1.05) */
 }
 
 #sign_out {
     color: var(--secondary);
-}
-
-/* in progress */
-#sign_out:hover #info-welcome {
-    visibility: hidden;
-    background-color: black;
 }
 
 /* -------------------------- LANDING -------------------------- */
@@ -254,7 +266,6 @@ footer {
 
 .form {
     background-color: var(--background);
-    min-height: 100vh;
 }
 
 .form-bg {
@@ -271,6 +282,7 @@ footer {
 .header{
     margin-top: 1em;
     font-size: 4rem;
+    max-width: 60rem;
 }
 .plant-date {
     font-size: 1.25rem;
@@ -297,6 +309,10 @@ footer {
 .comments-section a {
     text-decoration: none;
     color: grey;
+}
+.comments-section textarea {
+    height: 4rem;
+    width: 40rem;
 }
 
 .details-buttons {
@@ -328,6 +344,48 @@ footer {
     opacity: 1;
     font-weight: .9;
 }
+
+#placeholder {
+    margin: 0 auto;
+    height: 30em;
+    padding-top: 6em;
+}
+/* images slider */
+.tree-pics {
+    object-fit: cover;
+    min-height: 35em;
+    max-height: 35em;
+    min-width: 50em;
+    max-width: 50em;
+}
+.carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    height: 35em;
+    width: 50em;
+}
+
+
+.controls {
+position: absolute;
+right: 0;
+left: 0;
+bottom: 16em;
+text-align: center;
+}
+
+.controls__dot {
+display: inline-block;
+width: 1em;
+height: 1em;
+border-radius: 50%;
+background-color: #fff;
+cursor: pointer;
+border: solid 1px lightslategrey
+}
+
 
 /* ------------------------- FORMS ------------------------- */
 .form-content label {

@@ -26,6 +26,7 @@
     
     <section class="garden">
         <!-- while loop for dynamic card templates -->
+        {% user in  %}
         {% for plant in plant_list %}
         <a href="{% url 'detail' plant.id %}">
             <div class="plant-container">

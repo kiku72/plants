@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from main_app.views import PlantList, PlantExplore
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -15,4 +17,4 @@ urlpatterns = [
     path('plants/<int:plant_id>/add_photo/', views.add_photo, name='add_photo'),
     path('plants/create_photo/', views.create_photo, name='create_photo'),
     path('plants/<int:plant_id>/add_comment', views.add_comment, name='add_comment'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

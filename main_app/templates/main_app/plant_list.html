@@ -3,15 +3,15 @@
 <main class="dashboard">
     <section class="info-column">
         <div class="info-box">
-            <article id="info-welcome">
-                <h1> welcome! </h1>
-                <p> remember to replace this whole textbox on hover </p>
-            </article>
             <div class="info-images">
-                <img src="#" id="info-plant">
-                <img src="#" id="info-collection">
-                <img src="#" id="info-new_collection">
-                <img src="#" id="info-sign_out">
+                <img src="https://i.ibb.co/xhQ3wb0/holding-hand.png" id="info-plant">
+                <img src="https://i.ibb.co/VW3Tg0n/magnifying-glass.png" id="info-explore">
+                <img src="https://i.ibb.co/7G3G26m/gardening.png" id="info-collection">
+                <img src="https://i.ibb.co/H7ts3n3/open-door.png" id="info-sign_out">
+            </div>
+            <div class="info-welcome">
+                <h1> welcome! </h1>
+                <p> This is where your digital garden grows! </p>
             </div>
         </div>
         <div class="functions-box">
@@ -48,6 +48,50 @@
         </a>
         {% endfor %}
     </section>
-
 </main>
+<script>
+    
+    // im sorry
+    const welcome = document.querySelector('.info-welcome');
+    const plantImg = document.getElementById('info-plant');
+    const exploreImg = document.getElementById('info-explore');
+    const collectionImg = document.getElementById('info-collection');
+    const signOutImg = document.getElementById('info-sign_out');
+    const plant = document.getElementById('new_plant')
+    const explore = document.getElementById('explore')
+    const collection = document.getElementById('view_collection')
+    const signOut = document.getElementById('sign_out')
+
+    plant.addEventListener('mouseover', function() {
+        plantImg.style.visibility = 'visible'
+        exploreImg.style.visibility = 'hidden'
+        collectionImg.style.visibility = 'hidden'
+        signOutImg.style.visibility = 'hidden'
+        welcome.style.visibility = 'hidden'
+    })
+
+    explore.addEventListener('mouseover', function() {
+        plantImg.style.visibility = 'hidden'
+        exploreImg.style.visibility = 'visible'
+        collectionImg.style.visibility = 'hidden'
+        signOutImg.style.visibility = 'hidden'
+        welcome.style.visibility = 'hidden'
+    })
+
+    collection.addEventListener('mouseover', function() {
+        plantImg.style.visibility = 'hidden'
+        exploreImg.style.visibility = 'hidden'
+        collectionImg.style.visibility = 'visible'
+        signOutImg.style.visibility = 'hidden'
+        welcome.style.visibility = 'hidden'
+    })
+
+    signOut.addEventListener('mouseover', function() {
+        plantImg.style.visibility = 'hidden'
+        exploreImg.style.visibility = 'hidden'
+        collectionImg.style.visibility = 'hidden'
+        signOutImg.style.visibility = 'visible'
+        welcome.style.visibility = 'hidden'
+    })
+</script>
 {% endblock %}
