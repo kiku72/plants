@@ -13,6 +13,7 @@
             <form action="" method="POST">
             {% csrf_token %}
                 {{ form.as_p }}
+                <input type="file" name="photo-file">
                 <div class="form-buttons">
                     {% if object %}
                         <a href="{% url 'detail' plant.id %}" class="btn">Back</a>
@@ -24,11 +25,7 @@
                 </div>
             </form>
         </div>
-        <form action="{% url 'add_photo' plant.id %}" enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            <input type="file" name="photo-file">
-            <button type="submit" class="btn">Upload Photo</button>
-        </form>
+
     </div>
 </section>
 

@@ -37,9 +37,8 @@ class PlantCreate (LoginRequiredMixin, CreateView):
 
 def plants_detail (request, plant_id):
     plant = Plant.objects.get(id=plant_id)
-    photos = Photo.objects.filter(plant_id=plant_id)
     comment_form = CommentForm()
-    return render(request, 'plants/detail.html', {'plant': plant, 'photos': photos, 'comment_form': comment_form})
+    return render(request, 'plants/detail.html', {'plant': plant, 'comment_form': comment_form})
 
 def add_comment(request, plant_id):
     form = CommentForm(request.POST)
@@ -89,3 +88,19 @@ def add_photo (request, plant_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('detail', plant_id=plant_id)
+
+def create_photo (request, plant_id):
+    # Photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # Uploaded user photos are named after a unique 6 digit string
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Photo.objects.create(url=url, plant_id=plant_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
