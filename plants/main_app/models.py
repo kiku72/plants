@@ -58,3 +58,6 @@ class Comment(models.Model):
     
     def get_absolute_url(self):
         return reverse('comments_create', kwargs={'plant_id': self.id})
+    
+    class Meta:
+        ordering = ['-date']

@@ -35,27 +35,21 @@ class PlantCreate (LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class CommentCreate (LoginRequiredMixin, CreateView):
-    model = Comment
-    fields = ['comment_text']
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-# def add_comment(request, plant_id):
-#     form = CommentForm(request.POST)
-#     print(plant_id)
-#     if form.is_valid():
-#         comment = form.save(commit=False)
-#         # comment.user = request.user
-#         comment.plant_id = plant_id
-#         comment.save()
-#     return redirect('detail', plant_id=plant_id)
-
-class PlantDetailView (LoginRequiredMixin, DetailView):
-    model = Plant
+def plants_detail (request, plant_id):
+    plant = Plant.objects.get(id=plant_id)
+    photos = Photo.objects.filter(plant_id=plant_id)
     comment_form = CommentForm()
+    return render(request, 'plants/detail.html', {'plant': plant, 'photos': photos, 'comment_form': comment_form})
+
+def add_comment(request, plant_id):
+    form = CommentForm(request.POST)
+    print(plant_id)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.user_id = request.user.id
+        comment.plant_id = plant_id
+        comment.save()
+    return redirect('detail', plant_id=plant_id)
 
 class PlantUpdate (LoginRequiredMixin, UpdateView):
     model = Plant

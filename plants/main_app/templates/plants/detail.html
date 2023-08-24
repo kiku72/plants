@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="form">
+    <h1 class="header"> my {{ plant.name }}</h1>
+    <p class="plant-date"> Planted on {{plant.date}} </p>
+    <p class="plant-date"> Age {{plant.age}} </p>
+    <div class="form-content">
+        <p id="plant-desc">{{ plant.description }}</p>
+    </div>
+
+    {% for photo in plant.photo_set.all %}
+    <img src="{{photo.url}}" alt="{{plant.name}}" >
+    {% empty %}
+    <p>{{plant.name}} doesn't have any photos yet! </p>
+    {% endfor %}
+
+    <form action="{% url 'add_photo' plant.id %}" enctype="multipart/form-data" method="POST" class="">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+        <button type="submit" class="btn">Upload Photo</button>
+    </form>
+
+    <div class="form-buttons">
+        <a href="{% url 'plants_list' %}" class="btn">Back</a>
+        <a href="{% url 'plants_update' plant.id %}" class="btn">Edit</a>
+        <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
+    </div>
+</section>
+<section class="comments-section form">
+    <h2>Comments</h2>
+
+    <form action="{% url 'add_comment' plant.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn">Add Comment</button>
+    </form>
+    <br>
+    {% if not plant.comments.all %}
+        No Comments Yet
+    {% else %}
+        {% for comment in plant.comments.all %}
+            {{ comment.comment_text }} - 
+            <strong>
+                {{ comment.user.username }} @ {{ comment.date }}
+            </strong>
+            <br>
+        {% endfor %}
+    {% endif %}
+</section>
+<br>
+{% endblock %}

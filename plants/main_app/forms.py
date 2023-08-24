@@ -4,4 +4,4 @@ from .models import Comment
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['comment_text', 'plant']
+        fields = ['comment_text']
