@@ -1,2 +1,1 @@
-release: python3 manage.py migrate
-web: gunicorn catcollector.wsgi --log-file -
+web: gunicorn plants.wsgi --log-file -

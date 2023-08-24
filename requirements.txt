@@ -1,10 +1,12 @@
 asgiref==3.7.2
-boto3==1.28.32
-botocore==1.31.32
+boto==2.49.0
+boto3==1.28.29
+botocore==1.31.29
 dj-database-url==2.1.0
 Django==4.2.4
 django-environ==0.10.0
 django-heroku==0.3.1
+django-widget-tweaks==1.4.12
 gunicorn==21.2.0
 jmespath==1.0.1
 libxml2-python==2.11.4
