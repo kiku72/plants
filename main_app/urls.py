@@ -1,11 +1,12 @@
 from django.urls import path
 from . import views
-from main_app.views import PlantList
+from main_app.views import PlantList, PlantExplore
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('plants/', PlantList.as_view(), name='plants_list'),
+    path('plants/explore', PlantExplore.as_view(), name='plants_explore'),
     path('plants/<int:plant_id>/', views.plants_detail, name='detail'),
     path('plants/create/', views.PlantCreate.as_view(), name='plants_create'),
     path('plants/<int:pk>/update/', views.PlantUpdate.as_view(), name='plants_update'),
