@@ -46,8 +46,9 @@ class PlantCreate (LoginRequiredMixin, CreateView):
 
 def plants_detail (request, plant_id):
     plant = Plant.objects.get(id=plant_id)
+    own_plant = plant.user == request.user
     comment_form = CommentForm()
-    return render(request, 'plants/detail.html', {'plant': plant, 'comment_form': comment_form})
+    return render(request, 'plants/detail.html', {'plant': plant, 'comment_form': comment_form, 'own_plant': own_plant})
 
 def add_comment(request, plant_id):
     form = CommentForm(request.POST)

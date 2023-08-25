@@ -17,7 +17,7 @@
     <p>{{plant.name}} doesn't have any photos yet! </p>
     {% endfor %}
 
-    {% if request.user.id != plant.user.id  %}
+    {% if own_plant  %}
         <div class="form-buttons">
             <a href="{% url 'plants_list' %}" class="btn">Back</a>
             <a href="{% url 'plants_update' plant.id %}" class="btn">Edit</a>
