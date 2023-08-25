@@ -17,11 +17,13 @@
     <p>{{plant.name}} doesn't have any photos yet! </p>
     {% endfor %}
 
-    <div class="form-buttons">
-        <a href="{% url 'plants_list' %}" class="btn">Back</a>
-        <a href="{% url 'plants_update' plant.id %}" class="btn">Edit</a>
-        <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
-    </div>
+    {% if request.user.id != plant.user.id  %}
+        <div class="form-buttons">
+            <a href="{% url 'plants_list' %}" class="btn">Back</a>
+            <a href="{% url 'plants_update' plant.id %}" class="btn">Edit</a>
+            <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
+        </div>
+    {% endif %}
 </section>
 <section class="comments-section form">
     <h2>Comments</h2>
@@ -63,11 +65,13 @@
             {% endif %}
         </div>
 
-        <div class="details-buttons-bottom">
-            <a href="{% url 'plants_list' %}" id="back-btn"><< back</a>
-            <a href="{% url 'plants_update' plant.id %}" id="edit-btn">edit >></a>
-            <a href="{% url 'plants_delete' plant.id %}" id="delete-btn">Delete</a>
-        </div>
+        {% if plant.user.username == request.user.username %}
+            <div class="form-buttons">
+                <a href="{% url 'plants_list' %}" class="btn">Back</a>
+                <a href="{% url 'plants_update' plant.id %}" class="btn">Edit</a>
+                <a href="{% url 'plants_delete' plant.id %}" class="btn">Delete</a>
+            </div>
+        {% endif %}
     </div>
 
 </section>

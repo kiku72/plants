@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Plant, Photo, Comment
+from .models import Plant, Photo, Comment, User
 from .forms import CommentForm
 
 # Create your views here.
@@ -28,6 +28,12 @@ class PlantList (LoginRequiredMixin, ListView):
 
 class PlantExplore (LoginRequiredMixin, ListView):
     model = Plant
+    fields = ['name']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.all()  # Retrieve all users
+        return context
 
 class PlantCreate (LoginRequiredMixin, CreateView):
     model = Plant
