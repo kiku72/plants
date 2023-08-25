@@ -16,9 +16,9 @@
         </div>
         <div class="functions-box">
             <div class="dashboard-links">
+                <a href="{% url 'plants_list' %}" class="dash-link" id="your_garden">your garden</a>
                 <a href="{% url 'plants_create' %}" class="dash-link" id="new_plant"> add a new plant </a>
-                <a href="#" class="dash-link" id="explore">explore</a>
-                <a href="#" class="dash-link" id="view_collection">collections</a>
+                <a href="{% url 'plants_explore' %}" class="dash-link" id="new_collection">explore</a>
                 <a href="{% url 'logout' %}" class="dash-link" id="sign_out">sign out</a>
             </div>
         </div>

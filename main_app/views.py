@@ -26,6 +26,9 @@ class PlantList (LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Plant.objects.filter(user=self.request.user)
 
+class PlantExplore (LoginRequiredMixin, ListView):
+    model = Plant
+
 class PlantCreate (LoginRequiredMixin, CreateView):
     model = Plant
     # age is not included because it can be calculated using date-planted instead

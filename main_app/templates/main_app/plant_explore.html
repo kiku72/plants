@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="dashboard">
+    <section class="info-column">
+        <div class="info-box">
+            <article id="info-welcome">
+                <h1> welcome! </h1>
+                <p> Enjoy exploring other's gardens </p>
+            </article>
+            <div class="info-images">
+                <img src="#" id="info-plant">
+                <img src="#" id="info-collection">
+                <img src="#" id="info-new_collection">
+                <img src="#" id="info-sign_out">
+            </div>
+        </div>
+        <div class="functions-box">
+            <div class="dashboard-links">
+                <a href="{% url 'plants_list' %}" class="dash-link" id="your_garden">your garden</a>
+                <a href="{% url 'plants_create' %}" class="dash-link" id="new_plant"> add a new plant </a>
+                <a href="{% url 'plants_explore' %}" class="dash-link" id="new_collection">explore</a>
+                <a href="{% url 'logout' %}" class="dash-link" id="sign_out">sign out</a>
+            </div>
+        </div>
+      </section>
+    
+    <section class="garden">
+        <!-- while loop for dynamic card templates -->
+        {% user in  %}
+        {% for plant in plant_list %}
+        <a href="{% url 'detail' plant.id %}">
+            <div class="plant-container">
+                <div class="plant-box-big" id="plant-{{plant.id}}">
+                    <!-- with template tag assigns only the first photo in queryset, which is then displayed -->
+                    {% with plant.photo_set.all|first as photo %}
+                        {% if photo %}
+                            <img src="{{photo.url}}" alt="{{plant.name}}">
+                        {% else %}
+                            <img src="https://www.fast-growing-trees.com/cdn/shop/products/Japanese_Maple_Red_Dragon_6.jpg?v=1607098499&width=1000" alt="default plant">
+                        {% endif %}
+                    {% endwith %}
+                    <div class="plant-text">
+                        <h3>{{ plant.name }} </h3>
+                        <p>Planted on {{ plant.date }} </p>
+                        <p class="plant-desc">{{ plant.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </section>
+
+</main>
+{% endblock %}
