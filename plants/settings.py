@@ -83,11 +83,8 @@ WSGI_APPLICATION = 'plants.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '<DATABASE>',
-        'USER': '<USER>',
-        'PASSWORD': '<PASSWORD>',
-        'HOST': '<HOST>',
-        'PORT': '5432',
+        'NAME': 'plants',
+        'HOST': 'localhost',
     }
 }
 
